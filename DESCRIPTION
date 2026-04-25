@@ -1,0 +1,16 @@
+Package: distanceMCMC
+Title: Functions to Fit Distance Sampling Models Via MCMC Using Nimble
+Version: 0.0.9001
+Date: April 22, 2026
+Authors@R: 
+    c(person(given = "Devin",
+             family = "Johnson",
+             role = c("aut", "cre"),
+             email = "devin.johnson@noaa.gov"))
+Description: Functions for Bayesian distance sampling models for use within nimble.
+License: CC0
+Encoding: UTF-8
+Depends: R (>= 4.1.0), nimble
+Suggests: Distance
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
