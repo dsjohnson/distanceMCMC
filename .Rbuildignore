@@ -1,2 +1,5 @@
 ^distanceMCMC\.Rproj$
 ^\.Rproj\.user$
+^README\.*$
+^README\.md$
+^README\.Rmd$

@@ -1,17 +1,35 @@
-<img src="inst/nimbleDistance.png"  align="right"  width="150">
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## nimbleDistance: functions for fitting distance sampling models in [nimble](https://https://r-nimble.org/)
+# Installation
 
-This repository provides some user-defined distributions that can be used to implement distance sampling models in nimble:
+## R-Universe
 
-* Includes likelihoods for common distance-detection distributions (hazard-rate and half-normal) using both line-transect and point surveys.
+### Binary
 
-* Includes a vignette illustrating use of the package to undertake some simple analyses of distance-detection data collected on lines and points.
-
-The package is at a very early stage of development. Suggestions for improvement and contributions of code are very welcome.
-
-### Installation:
-
+``` r
+install.packages('distanceMCMC', repos='https://dsjohnson.r-universe.dev')
 ```
-remotes::install_github("scrogster/nimbleDistance")
+
+### Source
+
+``` r
+install.packages('distanceMCMC', type='source', repos='https://dsjohnson.r-universe.dev')
 ```
+
+## github source
+
+``` r
+remotes::install_github('dsjohnson/distanceMCMC')
+```
+
+# Disclaimer
+
+*This software package is developed and maintained by scientists at the
+NOAA Fisheries Pacific Islands Fisheries Science Center and should be
+considered a fundamental research communication. The recommendations and
+conclusions presented here are those of the authors and this software
+should not be construed as official communication by NMFS, NOAA, or the
+U.S. Dept. of Commerce. In addition, reference to trade names does not
+imply endorsement by the National Marine Fisheries Service, NOAA. While
+the best efforts have been made to insure the highest quality, tools
+such as this are under constant development and are subject to change.*
