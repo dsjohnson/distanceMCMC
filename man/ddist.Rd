@@ -2,28 +2,43 @@
 % Please edit documentation in R/dist.R
 \name{ddist}
 \alias{ddist}
+\alias{ddist_hn}
 \alias{rdist}
-\alias{esw_dist}
+\alias{ddist_hr}
+\alias{hr_integrand}
+\alias{rdist_hn}
+\alias{rdist_hr}
+\alias{esw_dist_hn}
+\alias{esw_dist_hr}
 \title{Distance sampling distributions that can be used in \code{nimble} models}
 \usage{
-ddist(x, sigma, b = 1, w, form = 1, log = 0)
+ddist_hn(x, sigma, w, log = 0)
 
-rdist(n, sigma, b = 1, w, form = 1)
+ddist_hr(x, sigma, b, w, log = 0)
 
-esw_dist(sigma, b = 1, w, form = 1, prob = 0)
+hr_integrand(x, pars)
+
+rdist_hn(n, sigma, w)
+
+rdist_hr(n, sigma, b, w)
+
+esw_dist_hn(sigma, w, prob = 0)
+
+esw_dist_hr(sigma, b, w, prob = 0)
 }
 \arguments{
 \item{x}{distance observations. either a single value (dHN) or a vector of values (dHN_V)}
 
 \item{sigma}{scale parameter for detection models}
 
-\item{b}{Power parameter for hazard rate model. Ignored for Half-normal (\code{form==1})}
-
 \item{w}{right truncation distance for integration of the likelihood function}
 
-\item{form}{Integer. Half-normal = 1, Hazard rate = 2}
-
 \item{log}{if TRUE, return the log-likelihood}
+
+\item{b}{Power parameter for hazard rate model.}
+
+\item{pars}{Parameters for hazard rate function. Used in \code{hr_integrand()}. Not intended
+for practitioner use.}
 
 \item{n}{number of random values to generate}
 
