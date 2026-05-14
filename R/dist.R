@@ -25,10 +25,13 @@ ddist_hn <- nimbleFunction(
 								 sigma = double(0),
 								 w = double(0),
 								 log = double(0, default = 0)) {
-
-		g <- exp(-x^2/(2*sigma^2))
-		esw <- 2 * (pnorm(w, 0, sigma)-0.5) * sqrt(pi/2) * sigma
-		L <- g/esw
+		if(x>w){
+			L <- 1
+		} else{
+			g <- exp(-x^2/(2*sigma^2))
+			esw <- sqrt(2*pi) * sigma * (pnorm(w, 0, sigma)-0.5)
+			L <- g/esw
+		}
 		if(log) return(log(L))
 		else return(L)
 		returnType(double(0))
@@ -43,11 +46,14 @@ ddist_hr <- nimbleFunction(
 								 b = double(0),
 								 w = double(0),
 								 log = double(0, default = 0)) {
-
-		pars = c(sigma, b)
-		g <- 1 - exp(-(x/sigma)^(-b))
-		esw <- nimIntegrate(hr_integrand, lower = 0, upper = w, param = pars)[1]
-		L <- g/esw
+		if(x > w){
+			L <- 0
+		} else{
+			pars = c(sigma, b)
+			g <- 1 - exp(-(x/sigma)^(-b))
+			esw <- nimIntegrate(hr_integrand, lower = 0, upper = w, param = pars)[1]
+			L <- g/esw
+		}
 		if(log) return(log(L))
 		else return(L)
 		returnType(double(0))
