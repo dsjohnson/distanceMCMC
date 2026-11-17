@@ -21,22 +21,26 @@
 #' @importFrom stats pnorm
 #' @export
 ddist_hn <- nimbleFunction(
-	run = function(x = double(0),
-								 sigma = double(0),
-								 w = double(0),
-								 log = double(0, default = 0)) {
-		if(x>w){
-			L <- 1
-		} else{
-			g <- exp(-x^2/(2*sigma^2))
-			esw <- sqrt(2*pi) * sigma * (pnorm(w, 0, sigma)-0.5)
-			L <- g/esw
-		}
-		if(log) return(log(L))
-		else return(L)
-		returnType(double(0))
-	}
+  run = function(x = double(0), sigma = double(0), w = double(0), log = integer(0, default = 0)) {
+    returnType(double(0))
+    if (x < 0 | x > w | sigma <= 1e-10) {
+      if (log) return(-Inf) else return(0)
+    }
+    log_g <- -x^2 / (2 * sigma^2)
+    
+    # Avoid catastrophic cancellation in pnorm(w, 0, sigma) - 0.5 when sigma is very large
+    if (w / sigma < 1e-5) {
+      # When sigma >> w, half-normal approaches Uniform(0, w), so esw ≈ w
+      log_esw <- log(w)
+    } else {
+      log_esw <- 0.5 * log(2 * pi) + log(sigma) + log(pnorm(w, 0, sigma) - 0.5)
+    }
+    
+    logL <- log_g - log_esw
+    if (log) return(logL) else return(exp(logL))
+  }
 )
+
 
 #' @rdname ddist
 #' @export
